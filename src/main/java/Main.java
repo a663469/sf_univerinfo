@@ -1,3 +1,7 @@
+import enums.StudyProfile;
+import model.Student;
+import model.University;
+
 import java.util.ArrayList;
 import java.util.List;
 

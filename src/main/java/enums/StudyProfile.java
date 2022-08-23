@@ -1,3 +1,5 @@
+package enums;
+
 public enum StudyProfile {
     ECOLOGY("Экология и природопользование."),
     RADIO("Радиотехника. Радиотехнические системы."),
