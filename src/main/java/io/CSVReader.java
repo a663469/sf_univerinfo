@@ -2,19 +2,25 @@ package io;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.List;
 import java.util.Scanner;
 
 public class CSVReader {
-    public static void main(String[] args) throws FileNotFoundException {
-        Scanner scanner = new Scanner(new FileInputStream("data/students.csv"));
-        String[] headers = scanner.nextLine().split(";");
-//        System.out.format(leftAlignFormat, headers);
-        while (scanner.hasNextLine()) {
-            String[] position = scanner.nextLine().split(";", -1);
-            for(String word : position) {
-                System.out.printf(word + " ");
-            }
-            System.out.println();
+    private Scanner scanner;
+    public CSVReader(String file){
+        try {
+            this.scanner = new Scanner(new FileInputStream(file));
+        } catch (FileNotFoundException e) {
+            System.out.println(e);
+            System.exit(0);
         }
+    }
+
+    public String[] getNextLine() {
+        return scanner.nextLine().split(";", -1);
+    }
+
+    public boolean hasNextLine() {
+        return scanner.hasNextLine();
     }
 }

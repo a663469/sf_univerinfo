@@ -1,4 +1,5 @@
 import enums.StudyProfile;
+import io.CSVReader;
 import model.Student;
 import model.University;
 
@@ -13,6 +14,27 @@ public class Main {
         students.add(new Student("123", "ABC", 2, 4));
         students.add(new Student("123", "ABC1", 3, 4));
         students.add(new Student("123", "ABC2", 3, 4));
+
+        CSVReader st = new CSVReader("data/students.csv");
+        while (st.hasNextLine()) {
+            String words[] = st.getNextLine();
+            String universityId;
+            String fullName;
+            int currentCourseNumber;
+            float avgExamScore;
+            try {
+                universityId = words[0];
+                fullName = words[1];
+                currentCourseNumber = Integer.parseInt(words[2]);
+                avgExamScore = Float.parseFloat(words[3]);
+                students.add(new Student(universityId, fullName, currentCourseNumber, avgExamScore));
+            } catch (Exception e) {
+                for(String word : words) {
+                    System.out.printf(word + " ");
+                }
+                System.out.println(e);
+            }
+        }
 
         for (Student student : students) {
             System.out.println(student);
@@ -29,5 +51,6 @@ public class Main {
         for (University university : universities) {
             System.out.println(university);
         }
+
     }
 }
