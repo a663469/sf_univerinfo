@@ -1,8 +1,7 @@
-package io;
+package univerinfo.io;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.List;
 import java.util.Scanner;
 
 public class CSVReader {

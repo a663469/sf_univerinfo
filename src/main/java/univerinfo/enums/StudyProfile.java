@@ -1,4 +1,4 @@
-package enums;
+package univerinfo.enums;
 
 public enum StudyProfile {
     ECOLOGY("Экология и природопользование."),

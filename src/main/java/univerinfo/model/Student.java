@@ -1,4 +1,4 @@
-package model;
+package univerinfo.model;
 
 public class Student {
     private String fullName;
@@ -49,7 +49,7 @@ public class Student {
 
     @Override
     public String toString() {
-        return "model.Student{" +
+        return "univerinfo.model.Student{" +
                 "fullName='" + fullName + '\'' +
                 ", universityId='" + universityId + '\'' +
                 ", currentCourseNumber=" + currentCourseNumber +

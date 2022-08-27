@@ -1,6 +1,6 @@
-package model;
+package univerinfo.model;
 
-import enums.StudyProfile;
+import univerinfo.enums.StudyProfile;
 
 public class University {
     private String id;
@@ -70,7 +70,7 @@ public class University {
 
     @Override
     public String toString() {
-        return "model.University{" +
+        return "univerinfo.model.University{" +
                 "id='" + id + '\'' +
                 ", fullName='" + fullName + '\'' +
                 ", shortName='" + shortName + '\'' +
