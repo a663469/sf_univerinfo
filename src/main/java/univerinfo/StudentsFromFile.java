@@ -34,7 +34,19 @@ public class StudentsFromFile {
         List<Student> students = new ArrayList<>();
             XLSXReader st = new XLSXReader(file, sheetName);
             while (st.hasNextLine()) {
-
+                List<String> words = st.getNextLine();
+                try {
+                    students.add(new Student(
+                            words.get(0),
+                            words.get(1),
+                            Integer.parseInt(words.get(2)),
+                            Float.parseFloat(words.get(3).replace(",", "."))
+                    ));
+                } catch (Exception e) {
+                    for (String word : words) {
+                        System.out.printf(word + " ");
+                    }
+                }
             }
         return students;
     }

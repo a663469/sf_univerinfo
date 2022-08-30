@@ -21,11 +21,11 @@ public class Main {
             System.out.println(student);
         }
 
-        List<University> universities = UniversitiesFromFile.getUniversities("data/universities.csv");
-
-        for (University university : universities) {
-            System.out.println(university);
-        }
+//        List<University> universities = UniversitiesFromFile.getUniversities("data/universities.csv");
+//
+//        for (University university : universities) {
+//            System.out.println(university);
+//        }
 
     }
 }
