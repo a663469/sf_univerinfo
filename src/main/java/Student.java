@@ -1,5 +1,3 @@
-package univerinfo.model;
-
 public class Student {
     private String fullName;
     private String universityId;
@@ -49,7 +47,7 @@ public class Student {
 
     @Override
     public String toString() {
-        return "univerinfo.model.Student{" +
+        return "Student{" +
                 "fullName='" + fullName + '\'' +
                 ", universityId='" + universityId + '\'' +
                 ", currentCourseNumber=" + currentCourseNumber +

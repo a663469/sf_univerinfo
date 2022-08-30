@@ -1,31 +1,27 @@
-import univerinfo.StudentsFromFile;
-import univerinfo.model.Student;
-import univerinfo.UniversitiesFromFile;
-import univerinfo.model.University;
-
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        System.out.println("Hello!");
 
-        List<Student> students = StudentsFromFile.getStudents("data/students.csv", "CSV");
+        List<Student> students = new ArrayList<>();
+        List<University> universities = new ArrayList<>();
 
-        for (Student student : students) {
-            System.out.println(student);
+        try {
+            File file = new File ("data/universityInfo.xlsx");
+            if (file == null) {
+                System.out.println("Empty!");
+            } else {
+                universities = ExcelReader.readUniversityData(file, "Университеты");
+                students = ExcelReader.readStudentsData(file, "Студенты");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        students = StudentsFromFile.getStudents("data/univerinfo.xlsx", "XLSX");
-
-        for (Student student : students) {
-            System.out.println(student);
-        }
-
-        List<University> universities = UniversitiesFromFile.getUniversities("data/universities.csv");
-
-        for (University university : universities) {
-            System.out.println(university);
-        }
-
+        System.out.println(students);
+        System.out.println(universities);
     }
 }
