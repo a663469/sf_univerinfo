@@ -9,7 +9,13 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
 
-        List<Student> students = StudentsFromFile.getStudents("data/students.csv");
+        List<Student> students = StudentsFromFile.getStudents("data/students.csv", "CSV");
+
+        for (Student student : students) {
+            System.out.println(student);
+        }
+
+        students = StudentsFromFile.getStudents("data/univerinfo.xlsx", "XLSX");
 
         for (Student student : students) {
             System.out.println(student);

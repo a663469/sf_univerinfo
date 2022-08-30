@@ -2,9 +2,11 @@ package univerinfo.io;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-public class CSVReader {
+public class CSVReader extends FileReaders{
     private Scanner scanner;
     public CSVReader(String file){
         try {
@@ -15,8 +17,13 @@ public class CSVReader {
         }
     }
 
-    public String[] getNextLine() {
-        return scanner.nextLine().split(";", -1);
+    public List<String> getNextLine() {
+        List<String> retVal = new ArrayList<>();
+        String st[] = scanner.nextLine().split(";", -1);
+        for(String word : st) {
+            retVal.add(word);
+        }
+        return retVal;
     }
 
     public boolean hasNextLine() {

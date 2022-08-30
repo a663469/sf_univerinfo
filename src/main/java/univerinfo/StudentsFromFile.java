@@ -1,6 +1,7 @@
 package univerinfo;
 
 import univerinfo.io.CSVReader;
+import univerinfo.io.XLSXReader;
 import univerinfo.model.Student;
 
 import java.util.ArrayList;
@@ -8,27 +9,33 @@ import java.util.List;
 
 public class StudentsFromFile {
     public static List<Student> getStudents(String file) {
-        CSVReader st = new CSVReader(file); //"data/students.csv"
         List<Student> students = new ArrayList<>();
-        while (st.hasNextLine()) {
-            String words[] = st.getNextLine();
-            String universityId;
-            String fullName;
-            int currentCourseNumber;
-            float avgExamScore;
-            try {
-                universityId = words[0];
-                fullName = words[1];
-                currentCourseNumber = Integer.parseInt(words[2]);
-                avgExamScore = Float.parseFloat(words[3].replace(",", "."));
-                students.add(new Student(universityId, fullName, currentCourseNumber, avgExamScore));
-            } catch (Exception e) {
-                for(String word : words) {
-                    System.out.printf(word + " ");
-                }
-                System.out.println(e);
+                    CSVReader st = new CSVReader(file); //"data/students.csv"
+                    while (st.hasNextLine()) {
+                        List<String> words = st.getNextLine();
+                        try {
+                            students.add(new Student(
+                                    words.get(0),
+                                    words.get(1),
+                                    Integer.parseInt(words.get(2)),
+                                    Float.parseFloat(words.get(3).replace(",", "."))
+                                    ));
+                        } catch (Exception e) {
+                            for (String word : words) {
+                                System.out.printf(word + " ");
+                            }
+                            System.out.println(e);
+                        }
+                    }
+        return students;
+    }
+
+    public static List<Student> getStudents(String file, String sheetName) {
+        List<Student> students = new ArrayList<>();
+            XLSXReader st = new XLSXReader(file, sheetName);
+            while (st.hasNextLine()) {
+
             }
-        }
         return students;
     }
 }
