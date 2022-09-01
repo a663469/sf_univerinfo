@@ -9,17 +9,17 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
 
-        List<Student> students = StudentsFromFile.getStudents("data/students.csv", "CSV");
+//        List<Student> students = StudentsFromFile.getStudents("data/students.csv");
+//
+//        for (Student student : students) {
+//            System.out.println(student);
+//        }
 
-        for (Student student : students) {
-            System.out.println(student);
-        }
+        List<Student>  sts = StudentsFromFile.getStudents("data/universityInfo.xlsx", "Студенты");
 
-        students = StudentsFromFile.getStudents("data/univerinfo.xlsx", "XLSX");
-
-        for (Student student : students) {
-            System.out.println(student);
-        }
+//        for (Student student : sts) {
+//            System.out.println(student);
+//        }
 
 //        List<University> universities = UniversitiesFromFile.getUniversities("data/universities.csv");
 //

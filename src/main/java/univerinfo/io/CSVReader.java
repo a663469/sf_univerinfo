@@ -29,4 +29,9 @@ public class CSVReader extends FileReaders{
     public boolean hasNextLine() {
         return scanner.hasNextLine();
     }
+
+    @Override
+    public void nextLine() {
+        getNextLine();
+    }
 }

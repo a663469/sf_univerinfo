@@ -10,11 +10,12 @@ import java.util.Iterator;
 import java.util.List;
 
 public class XLSXReader extends FileReaders{
-    int columns = 100;
-    FileInputStream fis;
-    XSSFWorkbook wb;
-    XSSFSheet sheet;
-    Iterator<Row> rows;
+    private int columns = 100;
+    private FileInputStream fis;
+    private XSSFWorkbook wb;
+    private XSSFSheet sheet;
+    private Iterator<Row> rows;
+    private Row row;
     public XLSXReader(String file, String sheetName) {
         try {
             this.fis = new FileInputStream(file);
@@ -27,6 +28,29 @@ public class XLSXReader extends FileReaders{
         }
     }
 
+    public String getCellString(int index) {
+        String retVal = "Error Format!";
+        try {
+            retVal = this.row.getCell(index).getStringCellValue();
+        } catch (IllegalStateException e) {
+            System.out.println("XLSXReader. Ошибка формата: " + e);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return retVal;
+    }
+
+    public double getCellDouble(int index) {
+        double retVal = -1;
+        try {
+            retVal = this.row.getCell(index).getNumericCellValue();
+        } catch (IllegalStateException e) {
+            System.out.println("XLSXReader. Ошибка формата: " + e);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return retVal;
+    }
 
     @Override
     public List<String> getNextLine() {
@@ -36,16 +60,27 @@ public class XLSXReader extends FileReaders{
             try {
                 retVal.add(currentRow.getCell(i).getStringCellValue());
             } catch (IllegalStateException e) {
-                System.out.printf("%s ", currentRow.getCell(i).getNumericCellValue());
+                System.out.printf("Error with %s \n", currentRow.getCell(i).getNumericCellValue());
             } catch (NullPointerException e) {
                 this.columns = i;
             }
         }
+        System.out.println("XLSXReader: ");
+        for (String ret : retVal)
+        {
+            System.out.printf(ret + " ");
+        }
+        System.out.println();
         return retVal;
     }
 
     @Override
     public boolean hasNextLine() {
         return rows.hasNext();
+    }
+
+    @Override
+    public void nextLine() {
+        this.rows.next();
     }
 }
