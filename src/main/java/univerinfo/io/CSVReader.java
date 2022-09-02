@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 public class CSVReader extends FileReaders{
     private Scanner scanner;
+    private String row[];
     public CSVReader(String file){
         try {
             this.scanner = new Scanner(new FileInputStream(file));
@@ -17,14 +18,14 @@ public class CSVReader extends FileReaders{
         }
     }
 
-    public List<String> getNextLine() {
-        List<String> retVal = new ArrayList<>();
-        String st[] = scanner.nextLine().split(";", -1);
-        for(String word : st) {
-            retVal.add(word);
-        }
-        return retVal;
-    }
+//    public List<String> getNextLine() {
+//        List<String> retVal = new ArrayList<>();
+//        String st[] = scanner.nextLine().split(";", -1);
+//        for(String word : st) {
+//            retVal.add(word);
+//        }
+//        return retVal;
+//    }
 
     public boolean hasNextLine() {
         return scanner.hasNextLine();
@@ -32,6 +33,26 @@ public class CSVReader extends FileReaders{
 
     @Override
     public void nextLine() {
-        getNextLine();
+        this.row = scanner.nextLine().split(";", -1);
+    }
+
+    @Override
+    public String getCellString(int index) {
+        return row[index];
+    }
+
+    @Override
+    public double getCellDouble(int index) {
+        return Double.parseDouble(row[index]);
+    }
+
+    @Override
+    public float getCellFloat(int index) {
+        return Float.parseFloat(row[index]);
+    }
+
+    @Override
+    public int getCellInt(int index) {
+        return Integer.parseInt(row[index]);
     }
 }

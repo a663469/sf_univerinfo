@@ -22,20 +22,20 @@ public class XLSXReader extends FileReaders{
             this.wb = new XSSFWorkbook(this.fis);
             this.sheet = this.wb.getSheet(sheetName);
             this.rows =  this.sheet.iterator();
+            this.row = this.rows.next();
         } catch (Exception e) {
-            System.out.println("XLSXReader: ");
-            System.out.println(e);
+            System.out.println("XLSXReader: " + e);
         }
     }
 
     public String getCellString(int index) {
-        String retVal = "Error Format!";
+        String retVal = "Error!";
         try {
             retVal = this.row.getCell(index).getStringCellValue();
         } catch (IllegalStateException e) {
-            System.out.println("XLSXReader. Ошибка формата: " + e);
+            System.out.println("XLSXReader.getCellString Ошибка формата: " + e);
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("XLSXReader.getCellString: " + e);
         }
         return retVal;
     }
@@ -45,34 +45,44 @@ public class XLSXReader extends FileReaders{
         try {
             retVal = this.row.getCell(index).getNumericCellValue();
         } catch (IllegalStateException e) {
-            System.out.println("XLSXReader. Ошибка формата: " + e);
+            System.out.println("XLSXReader.getCellDouble Ошибка формата: " + e);
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("XLSXReader.getCellDouble: " + e);
         }
         return retVal;
     }
 
     @Override
-    public List<String> getNextLine() {
-        List<String> retVal = new ArrayList<>();
-        Row currentRow = rows.next();
-        for(int i = 0; i < columns; i++) {
-            try {
-                retVal.add(currentRow.getCell(i).getStringCellValue());
-            } catch (IllegalStateException e) {
-                System.out.printf("Error with %s \n", currentRow.getCell(i).getNumericCellValue());
-            } catch (NullPointerException e) {
-                this.columns = i;
-            }
-        }
-        System.out.println("XLSXReader: ");
-        for (String ret : retVal)
-        {
-            System.out.printf(ret + " ");
-        }
-        System.out.println();
-        return retVal;
+    public float getCellFloat(int index) {
+        return (float) getCellDouble(index);
     }
+
+    @Override
+    public int getCellInt(int index) {
+        return (int) getCellDouble(index);
+    }
+
+//    @Override
+//    public List<String> getNextLine() {
+//        List<String> retVal = new ArrayList<>();
+//        Row currentRow = rows.next();
+//        for(int i = 0; i < columns; i++) {
+//            try {
+//                retVal.add(currentRow.getCell(i).getStringCellValue());
+//            } catch (IllegalStateException e) {
+//                System.out.printf("Error with %s \n", currentRow.getCell(i).getNumericCellValue());
+//            } catch (NullPointerException e) {
+//                this.columns = i;
+//            }
+//        }
+//        System.out.println("XLSXReader: ");
+//        for (String ret : retVal)
+//        {
+//            System.out.printf(ret + " ");
+//        }
+//        System.out.println();
+//        return retVal;
+//    }
 
     @Override
     public boolean hasNextLine() {
@@ -81,6 +91,6 @@ public class XLSXReader extends FileReaders{
 
     @Override
     public void nextLine() {
-        this.rows.next();
+        this.row = this.rows.next();
     }
 }

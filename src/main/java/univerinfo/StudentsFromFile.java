@@ -15,18 +15,15 @@ public class StudentsFromFile {
             st.nextLine();
         }
         while (st.hasNextLine()) {
-            List<String> words = st.getNextLine();
             try {
                 students.add(new Student(
-                        words.get(0),
-                        words.get(1),
-                        Integer.parseInt(words.get(2)),
-                        Float.parseFloat(words.get(3).replace(",", "."))
+                        st.getCellString(0),
+                        st.getCellString(1),
+                        st.getCellInt(2),
+                        st.getCellFloat(3)
                 ));
+                st.nextLine();
             } catch (Exception e) {
-                for (String word : words) {
-                    System.out.printf(word + " ");
-                }
                 System.out.println(e);
             }
         }
@@ -41,18 +38,12 @@ public class StudentsFromFile {
         }
         while (st.hasNextLine()) {
             try {
-                System.out.println(st.getCellString(0));
-                //System.out.println(st.getCellString(1));
-                //System.out.println((int)st.getCellDouble(2));
-                //System.out.println((float)st.getCellDouble(3));
-                System.out.println();
-
-//                students.add(new Student(
-//                        st.getCellString(0),
-//                        st.getCellString(1),
-//                        (int)st.getCellDouble(2),
-//                        (float)st.getCellDouble(3)
-//                ));
+                students.add(new Student(
+                        st.getCellString(0),
+                        st.getCellString(1),
+                        st.getCellInt(2),
+                        st.getCellFloat(3)
+                ));
                 st.nextLine();
             } catch (Exception e) {
                 System.out.println(e);
