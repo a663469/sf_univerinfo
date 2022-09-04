@@ -2,7 +2,7 @@ package univerinfo.io;
 
 import java.util.List;
 
-abstract class FileReaders {
+public abstract class FileReaders {
 //    abstract public List<String> getNextLine();
     abstract public boolean hasNextLine();
     abstract public void nextLine();
