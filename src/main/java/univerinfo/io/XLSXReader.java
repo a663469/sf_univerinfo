@@ -62,28 +62,6 @@ public class XLSXReader extends FileReaders{
         return (int) getCellDouble(index);
     }
 
-//    @Override
-//    public List<String> getNextLine() {
-//        List<String> retVal = new ArrayList<>();
-//        Row currentRow = rows.next();
-//        for(int i = 0; i < columns; i++) {
-//            try {
-//                retVal.add(currentRow.getCell(i).getStringCellValue());
-//            } catch (IllegalStateException e) {
-//                System.out.printf("Error with %s \n", currentRow.getCell(i).getNumericCellValue());
-//            } catch (NullPointerException e) {
-//                this.columns = i;
-//            }
-//        }
-//        System.out.println("XLSXReader: ");
-//        for (String ret : retVal)
-//        {
-//            System.out.printf(ret + " ");
-//        }
-//        System.out.println();
-//        return retVal;
-//    }
-
     @Override
     public boolean hasNextLine() {
         return rows.hasNext();

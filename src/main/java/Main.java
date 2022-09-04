@@ -15,23 +15,23 @@ public class Main {
             System.out.println(student);
         }
 
-//        List<Student>  sts = StudentsFromFile.getStudents("data/universityInfo.xlsx", "Студенты");
-//
-//        for (Student student : sts) {
-//            System.out.println(student);
-//        }
+        List<Student>  sts = StudentsFromFile.getStudents("data/universityInfo.xlsx", "Студенты");
 
-//        List<University> universities = UniversitiesFromFile.getUniversities("data/universities.csv");
-//
-//        for (University university : universities) {
-//            System.out.println(university);
-//        }
+        for (Student student : sts) {
+            System.out.println(student);
+        }
 
-//        List<University> universities = UniversitiesFromFile.getUniversities("data/universityInfo.xlsx", "Университеты");
-//
-//        for (University university : universities) {
-//            System.out.println(university);
-//        }
+        List<University> universities = UniversitiesFromFile.getUniversities("data/universities.csv");
+
+        for (University university : universities) {
+            System.out.println(university);
+        }
+
+        universities = UniversitiesFromFile.getUniversities("data/universityInfo.xlsx", "Университеты");
+
+        for (University university : universities) {
+            System.out.println(university);
+        }
 
     }
 }

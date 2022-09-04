@@ -16,13 +16,13 @@ public class StudentsFromFile {
         }
         while (st.hasNextLine()) {
             try {
+                st.nextLine();
                 students.add(new Student(
                         st.getCellString(0),
                         st.getCellString(1),
                         st.getCellInt(2),
                         st.getCellFloat(3)
                 ));
-                st.nextLine();
             } catch (Exception e) {
                 System.out.println(e);
             }
@@ -38,13 +38,13 @@ public class StudentsFromFile {
         }
         while (st.hasNextLine()) {
             try {
+                st.nextLine();
                 students.add(new Student(
                         st.getCellString(0),
                         st.getCellString(1),
                         st.getCellInt(2),
                         st.getCellFloat(3)
                 ));
-                st.nextLine();
             } catch (Exception e) {
                 System.out.println(e);
             }

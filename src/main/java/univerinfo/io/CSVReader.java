@@ -17,16 +17,6 @@ public class CSVReader extends FileReaders{
             System.exit(0);
         }
     }
-
-//    public List<String> getNextLine() {
-//        List<String> retVal = new ArrayList<>();
-//        String st[] = scanner.nextLine().split(";", -1);
-//        for(String word : st) {
-//            retVal.add(word);
-//        }
-//        return retVal;
-//    }
-
     public boolean hasNextLine() {
         return scanner.hasNextLine();
     }
@@ -43,16 +33,16 @@ public class CSVReader extends FileReaders{
 
     @Override
     public double getCellDouble(int index) {
-        return Double.parseDouble(row[index]);
+        return Double.parseDouble(row[index].replace(",", "."));
     }
 
     @Override
     public float getCellFloat(int index) {
-        return Float.parseFloat(row[index]);
+        return Float.parseFloat(row[index].replace(",", "."));
     }
 
     @Override
     public int getCellInt(int index) {
-        return Integer.parseInt(row[index]);
+        return Integer.parseInt(row[index].replace(",", "."));
     }
 }

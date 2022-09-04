@@ -9,36 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UniversitiesFromFile {
-//    public static List<University> getUniversities(String file) {
-//        CSVReader st = new CSVReader(file);
-//        List<University> universities = new ArrayList<>();
-//        while (st.hasNextLine()) {
-//            String words[] = st.getNextLine();
-//            try {
-//                universities.add(new University(
-//                        words[0],
-//                        words[1],
-//                        words[2],
-//                        Integer.parseInt(words[3]),
-//                        words[4]));
-//            } catch (Exception e) {
-//                for(String word : words) {
-//                    System.out.printf(word + " ");
-//                }
-//                System.out.println(e);
-//            }
-//        }
-//        return universities;
-//    }
-
-    public static List<University> getUniversities(String file, String sheetName) {
+    public static List<University> getUniversities(String file) {
+        CSVReader uv = new CSVReader(file);
         List<University> uversities = new ArrayList<>();
-        XLSXReader uv = new XLSXReader(file, sheetName);
         if (uv.hasNextLine()) {
             uv.nextLine();
         }
         while (uv.hasNextLine()) {
             try {
+                uv.nextLine();
                 uversities.add(new University(
                         uv.getCellString(0),
                         uv.getCellString(1),
@@ -46,7 +25,29 @@ public class UniversitiesFromFile {
                         uv.getCellInt(3),
                         uv.getCellString(4)
                 ));
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+        return uversities;
+    }
+
+    public static List<University> getUniversities(String file, String sheetName) {
+        XLSXReader uv = new XLSXReader(file, sheetName);
+        List<University> uversities = new ArrayList<>();
+        if (uv.hasNextLine()) {
+            uv.nextLine();
+        }
+        while (uv.hasNextLine()) {
+            try {
                 uv.nextLine();
+                uversities.add(new University(
+                        uv.getCellString(0),
+                        uv.getCellString(1),
+                        uv.getCellString(2),
+                        uv.getCellInt(3),
+                        uv.getCellString(4)
+                ));
             } catch (Exception e) {
                 System.out.println(e);
             }
