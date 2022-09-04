@@ -1,6 +1,5 @@
-package univerinfo;
+package univerinfo.io;
 
-import univerinfo.io.*;
 import univerinfo.model.Student;
 
 import java.util.ArrayList;

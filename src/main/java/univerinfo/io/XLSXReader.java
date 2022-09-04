@@ -9,14 +9,14 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class XLSXReader extends FileReaders{
+class XLSXReader extends FileReaders{
     private int columns = 100;
     private FileInputStream fis;
     private XSSFWorkbook wb;
     private XSSFSheet sheet;
     private Iterator<Row> rows;
     private Row row;
-    public XLSXReader(String file, String sheetName) {
+    XLSXReader(String file, String sheetName) {
         try {
             this.fis = new FileInputStream(file);
             this.wb = new XSSFWorkbook(this.fis);
@@ -28,7 +28,7 @@ public class XLSXReader extends FileReaders{
         }
     }
 
-    public String getCellString(int index) {
+    String getCellString(int index) {
         String retVal = "Error!";
         try {
             retVal = this.row.getCell(index).getStringCellValue();
@@ -40,7 +40,7 @@ public class XLSXReader extends FileReaders{
         return retVal;
     }
 
-    public double getCellDouble(int index) {
+    double getCellDouble(int index) {
         double retVal = -1;
         try {
             retVal = this.row.getCell(index).getNumericCellValue();
@@ -53,22 +53,22 @@ public class XLSXReader extends FileReaders{
     }
 
     @Override
-    public float getCellFloat(int index) {
+    float getCellFloat(int index) {
         return (float) getCellDouble(index);
     }
 
     @Override
-    public int getCellInt(int index) {
+    int getCellInt(int index) {
         return (int) getCellDouble(index);
     }
 
     @Override
-    public boolean hasNextLine() {
+    boolean hasNextLine() {
         return rows.hasNext();
     }
 
     @Override
-    public void nextLine() {
+    void nextLine() {
         this.row = this.rows.next();
     }
 }
