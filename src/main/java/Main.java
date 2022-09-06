@@ -1,7 +1,12 @@
-import univerinfo.StudentsFromFile;
+import univerinfo.comparator.StudentComparator;
+import univerinfo.comparator.UniversityComparator;
+import univerinfo.enums.StudentComparatorVariants;
+import univerinfo.enums.UniversityComparatorVariants;
+import univerinfo.io.StudentsFromFile;
+import univerinfo.io.UniversitiesFromFile;
 import univerinfo.model.Student;
-import univerinfo.UniversitiesFromFile;
 import univerinfo.model.University;
+import univerinfo.utility.ComparatorUtility;
 
 import java.util.List;
 
@@ -9,29 +14,36 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
 
+
+        System.out.println("Студенты:");
+
+        System.out.println("Read from csv:");
         List<Student> students = StudentsFromFile.getStudents("data/students.csv");
+        /*OR*/
+//        System.out.println("Read from xlsx:");
+//        List<Student>  students = StudentsFromFile.getStudents("data/universityInfo.xlsx", "Студенты");
 
-        for (Student student : students) {
-            System.out.println(student);
-        }
+        students.stream().forEach(System.out::println);
 
-        List<Student>  sts = StudentsFromFile.getStudents("data/universityInfo.xlsx", "Студенты");
+        System.out.println("Compare:");
 
-        for (Student student : sts) {
-            System.out.println(student);
-        }
+        StudentComparator studentComparator = ComparatorUtility.getStudentComparator(StudentComparatorVariants.NAME);
+        students.stream().sorted(studentComparator).forEach(System.out::println);
 
-        List<University> universities = UniversitiesFromFile.getUniversities("data/universities.csv");
 
-        for (University university : universities) {
-            System.out.println(university);
-        }
+        /*************************************************************************************************************/
+        System.out.println("Университеты:");
 
-        universities = UniversitiesFromFile.getUniversities("data/universityInfo.xlsx", "Университеты");
+//        System.out.println("Read from csv:");
+//        List<University> universities = UniversitiesFromFile.getUniversities("data/universities.csv");
+        /*OR*/
+        System.out.println("Read from xlsx:");
+        List<University> universities = UniversitiesFromFile.getUniversities("data/universityInfo.xlsx", "Университеты");
 
-        for (University university : universities) {
-            System.out.println(university);
-        }
+        universities.stream().forEach(System.out::println);
 
+        System.out.println("Compare:");
+        UniversityComparator universityComparator = ComparatorUtility.getUniversityComparator(UniversityComparatorVariants.YEAR_OF_FOUNDATION);
+        universities.stream().sorted(universityComparator).forEach(System.out::println);
     }
 }

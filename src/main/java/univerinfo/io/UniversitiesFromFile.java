@@ -1,4 +1,4 @@
-package univerinfo;
+package univerinfo.io;
 
 import univerinfo.io.CSVReader;
 import univerinfo.io.FileReaders;
