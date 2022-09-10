@@ -1,11 +1,11 @@
-package univerinfo.utility;
+package univerinfo.util;
 
 import univerinfo.comparator.*;
 import univerinfo.comparator.StudentUniversityIdComparator;
 import univerinfo.enums.StudentComparatorVariants;
 import univerinfo.enums.UniversityComparatorVariants;
 
-public class ComparatorUtility {
+public class ComparatorUtil {
     public static StudentComparator getStudentComparator(StudentComparatorVariants studentComparatorVariant) {
 
         switch (studentComparatorVariant) {
