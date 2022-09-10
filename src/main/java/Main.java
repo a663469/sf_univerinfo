@@ -55,9 +55,6 @@ public class Main {
             System.out.println(studentFromJson);
         });
 
-//        12. Убедиться в том, что сериализация/десериализация с измененными именами происходит также корректно.
-
-
         /*************************************************************************************************************/
         System.out.println("Университеты:");
 
@@ -83,37 +80,5 @@ public class Main {
             University universityFromJson = jsonToUniversity(universityJson);
             System.out.println(universityFromJson);
         });
-
-
-//        {
-//            Car car = new Car("Rover", 5);
-//
-//            //Gson gson = new Gson();
-//            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-//
-//            String json = gson.toJson(car);
-//            System.out.println(json);
-//
-//            Car car2 = gson.fromJson(json, Car.class);
-//            System.out.println(car2.getBrand());
-//        }
-    }
-}
-
-class Car {
-    private String brand = null;
-    private int    doors = 0;
-
-    public Car(String brand, int doors) {
-        this.brand = brand;
-        this.doors = doors;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public  int getDoors() {
-        return doors;
     }
 }
