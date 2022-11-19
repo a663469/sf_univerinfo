@@ -3,13 +3,17 @@ import com.google.gson.GsonBuilder;
 import univerinfo.comparator.StudentComparator;
 import univerinfo.comparator.UniversityComparator;
 import univerinfo.enums.StudentComparatorVariants;
+import univerinfo.enums.StudyProfile;
 import univerinfo.enums.UniversityComparatorVariants;
 import univerinfo.io.StudentsFromFile;
 import univerinfo.io.UniversitiesFromFile;
+import univerinfo.io.XlsWriter;
+import univerinfo.model.Statistics;
 import univerinfo.model.Student;
 import univerinfo.model.University;
 import univerinfo.util.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static univerinfo.util.JsonUtil.*;
@@ -80,5 +84,17 @@ public class Main {
             University universityFromJson = jsonToUniversity(universityJson);
             System.out.println(universityFromJson);
         });
+
+        ArrayList sts = new ArrayList<Statistics>();
+
+        for(StudyProfile sp : StudyProfile.values()) {
+            System.out.println(sp);
+            //sts.add(new Statistics(sp, ))
+            sts.add(new Statistics(sp, students, universities));
+        }
+
+        sts.stream().forEach(System.out::println);
+
+        new XlsWriter(sts, "temp.xls");
     }
 }
