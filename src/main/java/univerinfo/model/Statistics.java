@@ -33,7 +33,7 @@ public class Statistics {
                 numberOfUniversitiesByProfile++;
                 for(Student student : students) {
                     if(student.getUniversityId().equals(university.getId())) {
-                        if(numberOfStudentsByProfile > 1) {
+                        if(numberOfStudentsByProfile > 0) {
                             avgExamScore = (avgExamScore * numberOfStudentsByProfile + student.getAvgExamScore()) / (numberOfStudentsByProfile + 1);
                         } else {
                             avgExamScore = student.getAvgExamScore();
