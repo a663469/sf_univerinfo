@@ -62,8 +62,6 @@ public class StatisticsByProfile {
             String universitiesName = StringUtils.EMPTY;
             for(University university : universities) {
                 if(university.getMainProfile() == mainProfile) {
-                    System.out.println(university.getFullName());
-//                    universitiesName.add(university.getFullName());
                     universitiesName = universitiesName + university.getFullName() + ";";
                     numberOfUniversitiesByProfile++;
                     for(Student student : students) {

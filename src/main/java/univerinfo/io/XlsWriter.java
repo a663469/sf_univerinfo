@@ -14,8 +14,6 @@ public class XlsWriter {
         File currDir = new File("data\\.");
         String path = currDir.getAbsolutePath();
         String fileLocation = path.substring(0, path.length() - 1) + fileName;
-//        System.out.println(path);
-//        System.out.println(fileLocation);
         try {
             Workbook workbook = new HSSFWorkbook();
 
@@ -97,7 +95,6 @@ public class XlsWriter {
 
             FileOutputStream file = new FileOutputStream(new File(fileLocation));
             workbook.write(file);
-            System.out.println("Excel File has been created successfully.");
         } catch (Exception e) {
             System.out.println("XlsWriter: " + e);
         }

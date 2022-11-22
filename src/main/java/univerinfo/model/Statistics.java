@@ -15,8 +15,6 @@ public class Statistics {
     private OptionalDouble avgExamScore = OptionalDouble.empty();
 
     public void setAvgExamScore(OptionalDouble avgExamScore) {
-//        this.avgExamScore = avgExamScore.isPresent() ? {(float) BigDecimal.valueOf(avgExamScore).setScale()}
-//        this.avgExamScore = avgExamScore;
         if(avgExamScore.isPresent()) {
             MathContext context = new MathContext(3, RoundingMode.HALF_UP);
             BigDecimal result = new BigDecimal(avgExamScore.getAsDouble(), context);
