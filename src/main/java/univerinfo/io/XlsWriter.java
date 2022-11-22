@@ -74,9 +74,11 @@ public class XlsWriter {
                 cell.setCellValue(st.getMainProfile().toString());
                 cell.setCellStyle(style);
 
-                cell = row.createCell(1);
-                cell.setCellValue(st.getAvgExamScore());
-                cell.setCellStyle(style);
+                if(st.getAvgExamScore().isPresent()) {
+                    cell = row.createCell(1);
+                    cell.setCellValue(st.getAvgExamScore().getAsDouble());
+                    cell.setCellStyle(style);
+                }
 
                 cell = row.createCell(2);
                 cell.setCellValue(st.getNumberOfStudentsByProfile());

@@ -15,6 +15,8 @@ import univerinfo.util.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import static univerinfo.util.JsonUtil.*;
 
@@ -85,16 +87,25 @@ public class Main {
             System.out.println(universityFromJson);
         });
 
-        ArrayList sts = new ArrayList<Statistics>();
 
-        for(StudyProfile sp : StudyProfile.values()) {
-            System.out.println(sp);
-            //sts.add(new Statistics(sp, ))
-            sts.add(new Statistics(sp, students, universities));
-        }
+        new XlsWriter(StatisticsByProfile.getStatisticsList(students, universities), "temp.xls");
 
-        sts.stream().forEach(System.out::println);
+        new XlsWriter(StatisticsByProfile.createStatistics(students, universities), "temp_stream.xls");
+//        System.out.println("************************************Test Java Stream API*********************************");
+//
+//        List<Statistics> sl = new ArrayList<>();
+//
+//        Set<StudyProfile> profiles = universities.stream()
+//                .map(University::getMainProfile)
+//                .collect(Collectors.toSet());
+//        System.out.println(profiles);
+//        profiles.forEach(profiles -> {
+//            Statistics statistics = new Statistics();
+//
+//        });
 
-        new XlsWriter(sts, "temp.xls");
+
+
+
     }
 }
