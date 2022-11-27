@@ -1,5 +1,7 @@
 package univerinfo.io;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import univerinfo.io.CSVReader;
 import univerinfo.io.FileReaders;
 import univerinfo.io.XLSXReader;
@@ -10,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UniversitiesFromFile {
+    private static Logger log = LoggerFactory.getLogger(UniversitiesFromFile.class);
     public static List<University> getUniversities(String file) {
         return getListUniversities(new CSVReader(file));
     }
@@ -34,7 +37,7 @@ public class UniversitiesFromFile {
                         uv.getCellString(4)
                 ));
             } catch (Exception e) {
-                System.out.println(e);
+                log.error(e.toString());
             }
         }
         return uversities;

@@ -3,6 +3,8 @@ package univerinfo.io;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import univerinfo.model.Statistics;
 
 import java.io.File;
@@ -10,6 +12,7 @@ import java.io.FileOutputStream;
 import java.util.List;
 
 public class XlsWriter {
+    private static Logger log = LoggerFactory.getLogger(XlsWriter.class);
     public XlsWriter(List<Statistics> statistics, String fileName){
         File currDir = new File("data\\.");
         String path = currDir.getAbsolutePath();
@@ -95,8 +98,9 @@ public class XlsWriter {
 
             FileOutputStream file = new FileOutputStream(new File(fileLocation));
             workbook.write(file);
+            log.info("Создано файл: " + fileLocation);
         } catch (Exception e) {
-            System.out.println("XlsWriter: " + e);
+            log.error("XlsWriter: " + e);
         }
     }
 }

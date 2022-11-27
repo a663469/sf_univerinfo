@@ -1,11 +1,14 @@
 package univerinfo.io;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import univerinfo.model.Student;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class StudentsFromFile {
+    private static Logger log = LoggerFactory.getLogger(StudentsFromFile.class);
     public static List<Student> getStudents(String file) {
         return getListStudents(new CSVReader(file));
     }
@@ -29,7 +32,7 @@ public class StudentsFromFile {
                         st.getCellFloat(3)
                 ));
             } catch (Exception e) {
-                System.out.println(e);
+                log.error(e.toString());
             }
         }
         return students;

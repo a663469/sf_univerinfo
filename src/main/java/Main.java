@@ -1,3 +1,5 @@
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import univerinfo.comparator.StudentComparator;
 import univerinfo.comparator.UniversityComparator;
 import univerinfo.enums.StudentComparatorVariants;
@@ -14,9 +16,12 @@ import java.util.List;
 import static univerinfo.util.JsonUtil.*;
 
 public class Main {
+    private static Logger log = LoggerFactory.getLogger(Main.class);
     public static void main(String[] args) {
-        List<Student>  students = StudentsFromFile.getStudents("data/universityInfo.xlsx", "Студенты");
 
+        log.info("Запуск программы!");
+
+        List<Student>  students = StudentsFromFile.getStudents("data/universityInfo.xlsx", "Студенты");
 //        students.stream().forEach(System.out::println);
 
         StudentComparator studentComparator = ComparatorUtil.getStudentComparator(StudentComparatorVariants.NAME);
@@ -56,5 +61,8 @@ public class Main {
 
         new XlsWriter(StatisticsByProfile.getStatisticsList(students, universities), "temp.xls");
         new XlsWriter(StatisticsByProfile.createStatistics(students, universities), "temp_stream.xls");
+
+
+        log.info("Программа заверщена!");
     }
 }
